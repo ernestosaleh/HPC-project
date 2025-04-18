@@ -1,0 +1,62 @@
+Using 30 floor plan(s), and Numba JIT implementation
+[5.105038106994471, 1.2851842709933408, 3.452971503007575, 0.6182048769987887, 4.4420477189996745, 2.768174368990003, 1.514065388997551, 1.437724329996854, 4.484305352001684, 4.627987504005432, 0.4997151510033291, 3.7475951119995443, 4.111894596993807, 5.315828082995722, 4.173471782007255, 4.931222013998195, 0.7520345310040284, 0.9710737589921337, 2.4971845710097114, 2.391371411998989, 7.5620158270030515, 4.098979215006693, 0.7768747450027149, 3.74426991600194, 5.129446988998097, 4.658611236998695, 2.913447236001957, 1.809499566006707, 4.365535370990983, 6.124168738999288]
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24697436: <mini_proj_task_7> in cluster <dcc> Done
+
+Job <mini_proj_task_7> was submitted from host <n-62-30-3> by user <s243659> in cluster <dcc> at Thu Apr 17 12:53:25 2025
+Job was executed on host(s) <4*n-62-11-52>, in queue <hpc>, as user <s243659> in cluster <dcc> at Thu Apr 17 12:53:25 2025
+</zhome/09/4/214408> was used as the home directory.
+</zhome/09/4/214408/02613_PyHPC/miniproject> was used as the working directory.
+Started at Thu Apr 17 12:53:25 2025
+Terminated at Thu Apr 17 12:55:09 2025
+Results reported at Thu Apr 17 12:55:09 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J mini_proj_task_7
+#BSUB -q hpc
+#BSUB -W 24:00
+#BSUB -R "rusage[mem=3GB]"
+#BSUB -R "select[model==XeonGold6226R]"
+#BSUB -R "span[hosts=1]"
+#BSUB -n 4
+#BSUB -o task7_%J.out
+#BSUB -e task7_%J.err
+
+# Initialize Python environment 
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613
+
+# Run Python script 
+python task7.py 30
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   103.26 sec.
+    Max Memory :                                 236 MB
+    Average Memory :                             218.00 MB
+    Total Requested Memory :                     12288.00 MB
+    Delta Memory :                               12052.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   156 sec.
+    Turnaround time :                            104 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <task7_24697436.err> for stderr output of this job.
+

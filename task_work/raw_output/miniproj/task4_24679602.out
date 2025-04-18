@@ -1,0 +1,93 @@
+[23.418138309032656]
+building_id, mean_temp,std_temp,pct_above_18,pct_below_15
+10997, 17.668558641952835,6.560934260834178,55.756522114720106,35.56172252937112
+Wrote profile results to task4.py.lprof
+Inspect results with:
+python -m line_profiler -rmt "task4.py.lprof"
+Timer unit: 1e-06 s
+
+Total time: 23.3347 s
+File: task4.py
+Function: jacobi at line 20
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    20                                           @profile
+    21                                           def jacobi(u,interior_mask,max_iter,atol=1e-6):
+    22         1        751.3    751.3      0.0      u=np.copy(u)
+    23     11934       7290.2      0.6      0.0      for i in range(max_iter):
+    24                                               #Compute average of left,right,up and downneighbors,see eq.(1)
+    25                                               #C) see my excel illustration. for each u we compute 4 sub-matrices and then compute the average. 
+    26                                               #C)  this works because the submatrices are each 'shifted' in one direction compared to the inner black line (See excel) so they all have same dimenions as inner black line
+    27                                               #C)  We only want to compute delta & update for interior_mask=True (however it seems like a lot of operations are used for this ?? maybe its okay if it's all views and not copies?) 
+    28                                               #C) I imagine that the .max() will be a bit heavy 
+    29     11934   13303222.0   1114.7     57.0          u_new=0.25*(u[1:-1,:-2]+u[1:-1,2:]+u[:-2,1:-1]+u[2:,1:-1])        
+    30     11934    2307922.6    193.4      9.9          u_new_interior=u_new[interior_mask]
+    31     11934    5224468.1    437.8     22.4          delta=np.abs(u[1:-1,1:-1][interior_mask]-u_new_interior).max()
+    32     11934    2473222.3    207.2     10.6          u[1:-1,1:-1][interior_mask]=u_new_interior
+    33     11934      17816.2      1.5      0.1          if delta<atol:
+    34         1          0.6      0.6      0.0              break
+    35         1          0.3      0.3      0.0      return u    
+
+ 23.33 seconds - task4.py:20 - jacobi
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24679602: <mini_proj_task_4> in cluster <dcc> Done
+
+Job <mini_proj_task_4> was submitted from host <n-62-30-2> by user <s243659> in cluster <dcc> at Wed Apr 16 15:59:07 2025
+Job was executed on host(s) <4*n-62-11-51>, in queue <hpc>, as user <s243659> in cluster <dcc> at Wed Apr 16 15:59:09 2025
+</zhome/09/4/214408> was used as the home directory.
+</zhome/09/4/214408/02613_PyHPC/miniproject> was used as the working directory.
+Started at Wed Apr 16 15:59:09 2025
+Terminated at Wed Apr 16 15:59:37 2025
+Results reported at Wed Apr 16 15:59:37 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J mini_proj_task_4
+#BSUB -q hpc
+#BSUB -W 24:00
+#BSUB -R "rusage[mem=1GB]"
+#BSUB -R "select[model==XeonGold6226R]"
+#BSUB -R "span[hosts=1]"
+#BSUB -n 4
+#BSUB -o task4_%J.out
+#BSUB -e task4_%J.err
+
+# Initialize Python environment 
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613
+
+# Run Python script 
+kernprof -l task4.py 1
+python -m line_profiler -rmt task4.py.lprof
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   26.67 sec.
+    Max Memory :                                 155 MB
+    Average Memory :                             155.00 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               3941.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                6
+    Run time :                                   57 sec.
+    Turnaround time :                            30 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <task4_24679602.err> for stderr output of this job.
+

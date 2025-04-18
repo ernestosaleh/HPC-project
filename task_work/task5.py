@@ -7,6 +7,7 @@ from time import perf_counter as time
 import random
 import sys
 import multiprocessing
+from multiprocessing import Pool
 
 def add_colorbar(im, fig, ax):
     divider = make_axes_locatable(ax)
@@ -32,12 +33,12 @@ with open(join(LOAD_DIR, 'building_ids.txt'), 'r') as f:
     building_ids=f.read().splitlines()
 if len(sys.argv)<3:
     N=1
-    n_proc=1
+    max_n_proc=1
 else:
     N=int(sys.argv[1])
-    n_proc=int(sys.argv[2])
+    max_n_proc=int(sys.argv[2])
     
-print('Using',N,'floor plan(s) and',n_proc,'processes')
+print('Using',N,'floor plan(s) and maximum number of',max_n_proc,'processes')
 
 #Take a partition of floorplans, chose to select N random floor plans
 random.seed(10)
@@ -67,12 +68,13 @@ def jacobi_wrapper(args):
 args_list = [(u0, mask, MAX_ITER, ABS_TOL) for u0, mask in zip(all_u0, all_interior_mask)]
 
 exec_times = {}
-for n_proc in range(1, 32+1):
-    with ThreadPool(n_proc) as pool:
+print(f"Experiment timing for {N} floor plans with up to {max_n_proc} processes, starting from 1 process")
+for n_proc in range(1, max_n_proc + 1):
+    with Pool(n_proc) as pool:
         t = time()
         result = pool.map(jacobi_wrapper, args_list)
         t = time() - t
-        print(f"Execution time: {t:.4f} seconds")
         exec_times[n_proc] = t
+    print(f"Execution time: {t:.4f} seconds")
 
 print(exec_times)
