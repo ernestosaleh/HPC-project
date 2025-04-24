@@ -13,5 +13,8 @@
 source /dtu/projects/02613_2025/conda/conda_init.sh
 conda activate 02613
 
+#Convenient message 
+echo "Running simulation for 20 floorplans"
+
 # Run Python script 
 python task_1to_3.py 20

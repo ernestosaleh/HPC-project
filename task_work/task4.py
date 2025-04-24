@@ -69,12 +69,5 @@ for i, (u0,interior_mask) in enumerate(zip(all_u0,all_interior_mask)):
 
     all_u[i]=u
     exec_times.append(t)
-
-print(exec_times)
-#PrintsummarystatisticsinCSVformat
-stat_keys=['mean_temp', 'std_temp','pct_above_18', 'pct_below_15']
-print('building_id, '+','.join(stat_keys)) #CSVheader
-for bid,u, interior_mask in zip(building_ids,all_u, all_interior_mask):
-    stats=summary_stats(u,interior_mask)
-    # Print the building ID and summary statistics
-    print(f"{bid},",",".join(str(stats[k]) for k in stat_keys))
+    
+print('Building ID:', building_ids)

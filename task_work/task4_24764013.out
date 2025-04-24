@@ -1,0 +1,90 @@
+Building ID: ['10997']
+Wrote profile results to task4.py.lprof
+Inspect results with:
+python -m line_profiler -rmt "task4.py.lprof"
+Timer unit: 1e-06 s
+
+Total time: 24.7193 s
+File: task4.py
+Function: jacobi at line 20
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    20                                           @profile
+    21                                           def jacobi(u,interior_mask,max_iter,atol=1e-6):
+    22         1        729.2    729.2      0.0      u=np.copy(u)
+    23     11934      10149.8      0.9      0.0      for i in range(max_iter):
+    24                                               #Compute average of left,right,up and downneighbors,see eq.(1)
+    25     11934   14095883.8   1181.2     57.0          u_new=0.25*(u[1:-1,:-2]+u[1:-1,2:]+u[:-2,1:-1]+u[2:,1:-1])        
+    26     11934    2462230.4    206.3     10.0          u_new_interior=u_new[interior_mask]
+    27     11934    5551878.5    465.2     22.5          delta=np.abs(u[1:-1,1:-1][interior_mask]-u_new_interior).max()
+    28     11934    2574981.9    215.8     10.4          u[1:-1,1:-1][interior_mask]=u_new_interior
+    29     11934      23423.2      2.0      0.1          if delta<atol:
+    30         1          0.7      0.7      0.0              break
+    31         1          0.3      0.3      0.0      return u    
+
+ 24.72 seconds - task4.py:20 - jacobi
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24764013: <mini_proj_task_4> in cluster <dcc> Done
+
+Job <mini_proj_task_4> was submitted from host <n-62-27-19> by user <s243659> in cluster <dcc> at Wed Apr 23 12:03:00 2025
+Job was executed on host(s) <4*n-62-11-53>, in queue <hpc>, as user <s243659> in cluster <dcc> at Wed Apr 23 12:03:02 2025
+</zhome/09/4/214408> was used as the home directory.
+</zhome/09/4/214408/02613_PyHPC/miniproject> was used as the working directory.
+Started at Wed Apr 23 12:03:02 2025
+Terminated at Wed Apr 23 12:03:32 2025
+Results reported at Wed Apr 23 12:03:32 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J mini_proj_task_4
+#BSUB -q hpc
+#BSUB -W 24:00
+#BSUB -R "rusage[mem=1GB]"
+#BSUB -R "select[model==XeonGold6226R]"
+#BSUB -R "span[hosts=1]"
+#BSUB -n 4
+#BSUB -o task4_%J.out
+#BSUB -e task4_%J.err
+
+# Initialize Python environment 
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613
+
+# Run Python script 
+kernprof -l task4.py 1
+
+#Output the result from profiling
+python -m line_profiler -rmt task4.py.lprof
+rm task4.py.lprof
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   28.02 sec.
+    Max Memory :                                 161 MB
+    Average Memory :                             161.00 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               3935.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                6
+    Run time :                                   43 sec.
+    Turnaround time :                            32 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <task4_24764013.err> for stderr output of this job.
+

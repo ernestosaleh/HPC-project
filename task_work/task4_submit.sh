@@ -13,6 +13,15 @@
 source /dtu/projects/02613_2025/conda/conda_init.sh
 conda activate 02613
 
+
+#Convenient message 
+echo "Profiling reference implementation of jacobi"
+
 # Run Python script 
 kernprof -l task4.py 1
+
+#Output the result from profiling
 python -m line_profiler -rmt task4.py.lprof
+
+#remove .lprof file
+rm task4.py.lprof

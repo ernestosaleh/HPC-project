@@ -54,27 +54,43 @@ for i, (u0,interior_mask) in enumerate(zip(all_u0,all_interior_mask)):
 
     all_u[i]=u
     exec_times.append(t)
-
+    
+print('Execution times:')
 print(exec_times)
 SummaryDict = {}
 #PrintsummarystatisticsinCSVformat
 stat_keys=['mean_temp', 'std_temp','pct_above_18', 'pct_below_15']
+print('Summary Statistics')
 print('building_id, '+','.join(stat_keys)) #CSVheader
 for bid,u, interior_mask in zip(building_ids,all_u, all_interior_mask):
     stats=summary_stats(u,interior_mask)
     # Create a dictionary to hold the statistics
     SummaryDict[bid] = stats
     # Print the building ID and summary statistics
-    print(f"{bid},",",".join(str(stats[k]) for k in stat_keys))
+    print(f"{bid},",",".join(str(round(stats[k],3)) for k in stat_keys))
 
 # Create a DataFrame from the summary statistics dictionary
 summary_df = pd.DataFrame.from_dict(SummaryDict, orient='index')
 # Save the summary statistics to a CSV file
-summary_df.to_csv('task1_to_3summary_statistics.csv', index_label='building_id')
+summary_df.to_csv('results/task1_to_3summary_statistics.csv', index_label='building_id')
     
 #Save the results, in order to visualize them later
-np.savez('task1_to_3_result.npz', exec_times = np.array(exec_times), 
+np.savez('results/task1_to_3_result.npz', exec_times = np.array(exec_times), 
         building_ids = np.array(building_ids), 
         all_u0 = np.array(all_u0),
         all_u = np.array(all_u),
         all_interior_mask = np.array(all_interior_mask))
+
+print('''Computations are done, created two files.
+       
+task1_to_3_result.npz, with following keys
+    exec_times
+    building_ids
+    all_u0
+    all_u
+    all_interior_mask
+
+task1_to_3summary_statistics.csv:
+Load the file using pandas and the content is self-explainatory
+      
+      ''')

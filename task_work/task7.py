@@ -71,8 +71,6 @@ for i,bid in enumerate(building_ids):
 MAX_ITER=20_000
 ABS_TOL=1e-4 
 
-all_u=np.empty_like(all_u0)
-
 # Use multiprocessing to parallelize the Jacobi iterations
 args_list = [(u0, mask, MAX_ITER, ABS_TOL) for u0, mask in zip(all_u0, all_interior_mask)]
 
@@ -90,4 +88,6 @@ for i, (u0,interior_mask, MAX_ITER, ABS_TOL) in enumerate(args_list):
     all_u[i]=u
     exec_times.append(t)
 
+#end result
+print(building_ids)
 print(exec_times)

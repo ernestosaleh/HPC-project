@@ -77,4 +77,6 @@ for n_proc in range(1, max_n_proc + 1):
         exec_times[n_proc] = t
     print(f"Execution time: {t:.4f} seconds")
 
+#End result
+print(building_ids)
 print(exec_times)

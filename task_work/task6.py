@@ -38,7 +38,7 @@ else:
     N=int(sys.argv[1])
     max_n_proc=int(sys.argv[2])
     
-print('Using',N,'floor plan(s) and maximum number of',max_n_proc,'processes')
+print('Using',N,'floor plan(s) and maximum number of',max_n_proc,'processors')
 
 #Take a partition of floorplans, chose to select N random floor plans
 random.seed(10)
@@ -68,7 +68,7 @@ def jacobi_wrapper(args):
 args_list = [(u0, mask, MAX_ITER, ABS_TOL) for u0, mask in zip(all_u0, all_interior_mask)]
 
 exec_times = {}
-print(f"Experiment timing for {N} floor plans with up to {max_n_proc} processes, starting from 1 process")
+print(f"Experiment timing for {N} floor plans with up to {max_n_proc} processors, starting from 1 processor")
 for n_proc in range(1, max_n_proc + 1):
     with Pool(n_proc) as pool:
         t= time()
@@ -78,6 +78,8 @@ for n_proc in range(1, max_n_proc + 1):
         t= time() - t
         exec_times[n_proc] = t
 
-    print(f"Processes: {n_proc} - Execution time: {t:.4f} seconds")
+    print(f"CPUs: {n_proc} - Execution time: {t:.4f} seconds")
 
+#End result
+print(building_ids)
 print(exec_times)

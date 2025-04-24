@@ -2,3 +2,34 @@ Using 100 floor plan(s) and maximum number of 32 processes
 Experiment timing for 100 floor plans with up to 32 processes, starting from 1 process
 Processes: 1 - Execution time: 1333.4546 seconds
 Processes: 2 - Execution time: 723.1479 seconds
+Processes: 3 - Execution time: 479.1467 seconds
+Processes: 4 - Execution time: 397.4722 seconds
+Processes: 5 - Execution time: 323.7452 seconds
+Processes: 6 - Execution time: 285.8599 seconds
+Processes: 7 - Execution time: 264.7887 seconds
+Processes: 8 - Execution time: 253.5019 seconds
+Processes: 9 - Execution time: 237.9357 seconds
+Processes: 10 - Execution time: 227.2232 seconds
+Processes: 11 - Execution time: 213.4783 seconds
+Processes: 12 - Execution time: 201.8564 seconds
+Processes: 13 - Execution time: 189.6708 seconds
+Processes: 14 - Execution time: 177.9734 seconds
+Processes: 15 - Execution time: 167.6269 seconds
+Processes: 16 - Execution time: 161.6803 seconds
+Processes: 17 - Execution time: 157.1669 seconds
+Processes: 18 - Execution time: 152.2867 seconds
+Processes: 19 - Execution time: 153.8254 seconds
+Processes: 20 - Execution time: 151.1088 seconds
+Processes: 21 - Execution time: 149.8671 seconds
+Processes: 22 - Execution time: 145.7668 seconds
+Processes: 23 - Execution time: 148.7790 seconds
+Processes: 24 - Execution time: 148.3167 seconds
+Processes: 25 - Execution time: 149.4173 seconds
+Processes: 26 - Execution time: 152.4896 seconds
+Processes: 27 - Execution time: 152.3006 seconds
+Processes: 28 - Execution time: 154.0409 seconds
+Processes: 29 - Execution time: 156.1481 seconds
+Processes: 30 - Execution time: 155.0179 seconds
+Processes: 31 - Execution time: 157.0795 seconds
+Processes: 32 - Execution time: 159.4598 seconds
+{1: 1333.4546439950354, 2: 723.1479314868338, 3: 479.14672279614024, 4: 397.47219561995007, 5: 323.74523712694645, 6: 285.85994073492475, 7: 264.78872482385486, 8: 253.50192154198885, 9: 237.93572715693153, 10: 227.22324692714028, 11: 213.47828726214357, 12: 201.85640282509848, 13: 189.6707663529087, 14: 177.97339330194518, 15: 167.6268860369455, 16: 161.6803141029086, 17: 157.16688240179792, 18: 152.2867199780885, 19: 153.82536882394925, 20: 151.10883956891485, 21: 149.8671153821051, 22: 145.76684185513295, 23: 148.77904351498, 24: 148.31670442898758, 25: 149.41728939209133, 26: 152.48960894695483, 27: 152.30056009814143, 28: 154.04090207302943, 29: 156.14805243397132, 30: 155.01793293911032, 31: 157.07945401710458, 32: 159.45981260715052}
