@@ -131,14 +131,6 @@ summary_df = pd.DataFrame.from_dict(SummaryDict, orient='index')
 # Save the summary statistics to a CSV file
 summary_df.to_csv('results/task12summary_statistics.csv', index_label='building_id')
 
-#Just in case: save the result in .npz file
-#Save the results, in order to visualize them later
-np.savez('results/task12_result.npz', exec_times = np.array(exec_times), 
-        building_ids = np.array(building_ids), 
-        all_u0 = np.array(all_u0),
-        all_u = np.array(all_u),
-        all_interior_mask = np.array(all_interior_mask))
-
 #Visualize simulations for first 20 floor plans 
 for building_id in building_ids[:20]:  
     fig, axes = plt.subplots(1,3, figsize = (10,4), sharey=True)
