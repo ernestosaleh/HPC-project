@@ -69,7 +69,7 @@ args_list = [(u0, mask, MAX_ITER, ABS_TOL) for u0, mask in zip(all_u0, all_inter
 
 exec_times = {}
 print(f"Experiment timing for {N} floor plans with up to {max_n_proc} processors, starting from 1 processor")
-for n_proc in range(1, max_n_proc + 1):
+for n_proc in range(max_n_proc, max_n_proc + 1):
     with Pool(n_proc) as pool:
         t= time()
         # Submit tasks dynamically using apply_async

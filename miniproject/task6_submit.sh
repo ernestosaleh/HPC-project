@@ -6,8 +6,8 @@
 #BSUB -R "select[model==XeonGold6226R]"
 #BSUB -R "span[hosts=1]"
 #BSUB -n 32
-#BSUB -o bash_output/task6_%J.out
-#BSUB -e bash_output/task6_%J.err
+#BSUB -o bash_output/task6v2_%J.out
+#BSUB -e bash_output/task6v2_%J.err
 
 # Initialize Python environment 
 source /dtu/projects/02613_2025/conda/conda_init.sh
